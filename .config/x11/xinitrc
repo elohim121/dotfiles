@@ -1,14 +1,14 @@
 #!/bin/sh
 
+#When VGA is plug, shut the laptop screen and vis versa
+#If resolution is not ok, remove "--mode 1920x1080"
 intern=LVDS1
 extern=VGA1
-
 if xrandr | grep "$extern disconnected"; then
-	xrandr --output "$extern" off --output "$intern" --auto
+	xrandr --output "$extern" --off --output "$intern" --primary --auto
 else
 	xrandr --output "$intern" --off --output "$extern" --primary --auto
 fi
-
 
 if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile" ]; then
 	. "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile"
@@ -19,6 +19,7 @@ fi
 # Activate dbus variables
 dbus-update-activation-environment --all
 
+#Start dwm
 while :; do
 	ssh-agent dwm
 done

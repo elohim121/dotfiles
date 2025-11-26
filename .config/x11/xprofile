@@ -6,10 +6,11 @@ hsetroot --solid "000066"
 #Set background
 exec nitrogen --restore &
 
+#Set the terminal color with the background color
 exec wal -R &
 
+#Autostart program
 autostart="xcompmgr blueman-applet dwmblocks"
-
 for program in $autostart; do
 	pidof -sx "$program" || "$program" &
 done >/dev/null 2>&1

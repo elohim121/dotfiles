@@ -2,11 +2,19 @@ set nocompatible
 
 call plug#begin()
 
-" List your plugins here
-Plug 'phelipetls/vim-hugo'
 Plug 'sheerun/vim-polyglot'
+Plug 'phelipetls/vim-hugo'
 
 call plug#end()
+
+let g:hugo_disable_indent = 1
+autocmd BufNewFile,BufRead *.html set filetype=html
+autocmd FileType htmlhugo setlocal indentexpr=HtmlIndent()
+autocmd FileType htmlhugo setlocal syntax=html
+
+set autoindent
+
+set smartindent
 
 set wrap
 
@@ -28,8 +36,6 @@ set showmode "Show mode"
  
 set relativenumber "Show line number"
 
-set background=dark 
-
 set ruler "Show file stats"
 
 set visualbell "Blink cursor instead of beep"
@@ -45,6 +51,8 @@ set incsearch "Search as character are entered"
 set hlsearch "Show mathc"
 
 set ignorecase "Search are case sensitive"
+
+set clipboard=unnamedplus
 
 colorscheme solarized8_flat
 
